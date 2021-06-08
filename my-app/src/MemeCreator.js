@@ -10,6 +10,7 @@ class MemeCreator extends Component {
         allMemeImgs:[]
       }
       this.handleChange=this.handleChange.bind(this)
+      this.handleSubmit= this.handleSubmit.bind(this)
       
     }
     componentDidMount(){
@@ -25,22 +26,29 @@ class MemeCreator extends Component {
      
     }
     handleChange(event){
-        const {name, value}= event.target
-        this.setState({
-            [name]:value
-        })
+        const {name, value} = event.target
+        this.setState({[name]:value})
     }
-    handleSubmit(){
-
+    handleSubmit(event){
+        event.preventDefault()
+        const randomNum = Math.floor(Math.random() * this.state.allMemeImgs.length)
+        const randMemeImg = this.state.allMemeImgs[randomNum].url
+        this.setState({ randomImg: randMemeImg})
     }
+   
     render(){
         return(
             <div>
-            <form>
-                <input name="topText" placeholder="Top Text" value={this.state.topText} type="text" onChange={this.handleChange()}/>
-                <input name="bottomText" placeholder="Bottom Text" value={this.state.bottomText} type="text" onChange={this.handleChange()}/>
-                <button>SUBMIT</button>
+            <form className="" onSubmit={this.handleSubmit}>
+                <input name="topText" placeholder="Top Text" value={this.state.topText} type="text" onChange={this.handleChange}/>
+                <input name="bottomText" placeholder="Bottom Text" value={this.state.bottomText} type="text" onChange={this.handleChange}/>
+                <button onSubmit={this.handleSubmit}>NEW PIC</button>
             </form>
+            <div className="">
+                <img src={this.state.randomImg} alt=""/>
+                <h2 className="top">{this.state.topText}</h2>
+                <h2 className="bottom">{this.state.bottomText}</h2>
+            </div>
            </div>
         )
     }
