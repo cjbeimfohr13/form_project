@@ -1,38 +1,14 @@
 import React, {Component} from "react"
+import Header from "./Header"
+import MemeCreator from "./MemeCreator"
 
-class App extends Component {
-  constructor(){
-    super()
-    this.state={
-      firstName:"",
-      loading:true,
-      person:{}
-    }
-    this.handleChange=this.handleChange.bind(this)
-  }
-  componentDidMount(){
-    this.setState({loading: true})
-    fetch("https://swapi.dev/api/people/")
-      .then(response=>response.json())
-      .then(data=>
-        this.setState({
-          loading: false,
-          person: data
-        }))
-  }
-  handleChange(event){
-    this.setState({
-      firstName: event.target.value
-    })
-  }
-  render(){
-    return(
-      <form>
-        <input type="text" placeholder="First Name" onChange={this.handleChange}/>
-        <h1>{this.state.firstName}</h1>
-      </form>
-    )
-  }
+function App(){
+  return(
+    <div>
+    <Header />
+    <MemeCreator />
+    </div>
+  )
 }
 
 
