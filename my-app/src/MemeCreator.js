@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import "./style.css"
 
 class MemeCreator extends Component {
     constructor(){
@@ -39,12 +40,14 @@ class MemeCreator extends Component {
     render(){
         return(
             <div>
-            <form className="" onSubmit={this.handleSubmit}>
+            <form className="meme-form" onSubmit={this.handleSubmit}>
                 <input name="topText" placeholder="Top Text" value={this.state.topText} type="text" onChange={this.handleChange}/>
+                
                 <input name="bottomText" placeholder="Bottom Text" value={this.state.bottomText} type="text" onChange={this.handleChange}/>
-                <button onSubmit={this.handleSubmit}>NEW PIC</button>
+                
+                <button onSubmit={this.handleSubmit}>Create</button>
             </form>
-            <div className="">
+            <div className="meme">
                 <img src={this.state.randomImg} alt=""/>
                 <h2 className="top">{this.state.topText}</h2>
                 <h2 className="bottom">{this.state.bottomText}</h2>
